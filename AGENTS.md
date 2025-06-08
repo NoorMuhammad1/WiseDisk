@@ -70,3 +70,24 @@ Each commit should also include a short section:
 ### Testing Done
 - Ran `node scripts/fakeClutterGenerator.js`
 - Confirmed files were created as expected
+
+📌 Constraints
+For now, focus only on simulated environments (./test-disk)
+
+Do not perform any destructive actions outside of the Recycle Bin
+
+Avoid installing heavy dependencies unless needed
+
+
+🙋 Need Help?
+If unsure about a task or unable to complete due to ambiguity, create a GitHub issue instead of guessing.
+
+Thank you for contributing to WiseDisk!
+
+
+---
+
+Would you like me to:
+- Push this to a local folder structure for you?
+- Create the initial files and populate them with placeholders?
+- Generate your first Codex task prompt for initializing `fakeClutterGenerator.js`?
