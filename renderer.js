@@ -35,7 +35,9 @@ function createTree(nodes) {
     li.classList.add('tree-item');
 
     const row = document.createElement('div');
-    row.classList.add('tree-row', getExtClass(node.name));
+    const extClass = getExtClass(node.name);
+    row.classList.add('tree-row');
+    if (extClass) row.classList.add(extClass);
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
