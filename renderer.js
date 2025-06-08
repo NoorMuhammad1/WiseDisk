@@ -68,10 +68,10 @@ function createTree(nodes) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const data = await ipcRenderer.invoke('scan');
+  const treeData = await ipcRenderer.invoke('scan');
   const container = document.getElementById('file-list');
   if (container) {
-    container.appendChild(createTree(data));
+    container.appendChild(createTree(treeData));
   }
 
   document.getElementById('delete').addEventListener('click', async () => {
