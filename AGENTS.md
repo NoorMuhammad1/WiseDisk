@@ -65,3 +65,8 @@ Use the following format for commits:
 ✨ feature: added fake clutter generator script
 🧪 test: added logger tests
 🐛 fix: corrected file path logic in scanner
+
+Each commit should also include a short section:
+### Testing Done
+- Ran `node scripts/fakeClutterGenerator.js`
+- Confirmed files were created as expected
