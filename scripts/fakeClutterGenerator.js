@@ -33,6 +33,7 @@ async function createRandomFile(dir, index) {
 
 async function populateDir(dir, depth, createdPaths) {
   await fs.mkdir(dir, { recursive: true });
+  createdPaths.push(dir);
   for (let i = 0; i < 3; i++) {
     const p = await createRandomFile(dir, i);
     createdPaths.push(p);
