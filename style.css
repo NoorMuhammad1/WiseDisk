@@ -1,0 +1,83 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #2d2d2d;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+#tree {
+  padding: 20px;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.tree-row {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-bottom: 1px solid #eee;
+}
+.tree-row:hover {
+  background-color: #f5f5f5;
+}
+.tree-row input {
+  margin-right: 8px;
+}
+
+.tree-item.selected .tree-row {
+  background-color: #e6f7ff;
+}
+
+.nested {
+  margin-left: 20px;
+}
+
+.nested.collapsed {
+  display: none;
+}
+
+.collapsible {
+  cursor: pointer;
+}
+
+.ext-tmp .label {
+  color: #d9534f;
+}
+.ext-log .label {
+  color: #5bc0de;
+}
+.ext-bak .label {
+  color: #f0ad4e;
+}
+.ext-zip .label {
+  color: #5cb85c;
+}
+.ext-txt .label {
+  color: #0275d8;
+}
+
+#delete {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #d9534f;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+#delete:hover {
+  background-color: #c9302c;
+}
