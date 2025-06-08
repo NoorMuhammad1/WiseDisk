@@ -1,5 +1,18 @@
 const { ipcRenderer } = require('electron');
 
+function formatSize(bytes) {
+  const KB = 1024;
+  const MB = KB * 1024;
+  const GB = MB * 1024;
+  if (bytes >= GB) {
+    return `${(bytes / GB).toFixed(1)} GB`;
+  }
+  if (bytes >= MB) {
+    return `${(bytes / MB).toFixed(1)} MB`;
+  }
+  return `${(bytes / KB).toFixed(1)} KB`;
+}
+
 function createTree(nodes) {
   const ul = document.createElement('ul');
   for (const node of nodes) {
@@ -9,7 +22,7 @@ function createTree(nodes) {
     checkbox.dataset.path = node.path;
     li.appendChild(checkbox);
     const label = document.createElement('span');
-    label.textContent = `${node.name} (${(node.size / 1024).toFixed(1)} KB)`;
+    label.textContent = `${node.name} (${formatSize(node.size)})`;
     li.appendChild(label);
     if (node.isDirectory && node.children) {
       li.appendChild(createTree(node.children));
