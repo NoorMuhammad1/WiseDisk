@@ -45,6 +45,11 @@ ul {
   display: none;
 }
 
+.toggle {
+  cursor: pointer;
+  margin-right: 6px;
+}
+
 .collapsible {
   cursor: pointer;
 }
