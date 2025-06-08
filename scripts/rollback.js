@@ -31,19 +31,27 @@ async function fileExists(p) {
  * Restore files based on deletion log entries.
  * @param {string} logDir directory containing deletion JSON logs
  */
-async function restoreFromLogs(logDir = path.join(__dirname, '..', 'logs')) {
+async function restoreFromLogs(target = path.join(__dirname, '..', 'logs')) {
   const trashDir = await getTrashDir();
   const trashFiles = path.join(trashDir, 'files');
-  let files;
+  let files = [];
   try {
-    files = await fs.readdir(logDir);
+    const stats = await fs.stat(target);
+    if (stats.isDirectory()) {
+      const dirFiles = await fs.readdir(target);
+      files = dirFiles
+        .filter((f) => f.endsWith('.json'))
+        .map((f) => path.join(target, f));
+    } else {
+      files = [target];
+    }
   } catch {
-    console.error(`Log directory not found: ${logDir}`);
+    console.error(`Log path not found: ${target}`);
     return;
   }
   for (const file of files) {
     if (!file.endsWith('.json')) continue;
-    const data = JSON.parse(await fs.readFile(path.join(logDir, file), 'utf8'));
+    const data = JSON.parse(await fs.readFile(file, 'utf8'));
     for (const entry of data) {
       const original = path.resolve(entry.path);
       const trashed = path.join(trashFiles, path.basename(original));
