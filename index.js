@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const fs = require('fs');
 const path = require('path');
-const trash = require('trash');
+const { default: trash } = require('trash');
 const { scanDirectory } = require('./scanner');
 const { logDeletion } = require('./logger');
 
