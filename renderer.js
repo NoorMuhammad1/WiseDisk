@@ -94,6 +94,38 @@ document.addEventListener('DOMContentLoaded', async () => {
     container.appendChild(createTree(treeData));
   }
 
+  async function showRestoreDialog() {
+    const logs = await ipcRenderer.invoke('listLogs');
+    const select = document.getElementById('log-select');
+    select.innerHTML = '';
+    for (const log of logs) {
+      const option = document.createElement('option');
+      option.value = log;
+      option.textContent = log;
+      select.appendChild(option);
+    }
+    document.getElementById('restore-dialog').showModal();
+  }
+
+  document
+    .getElementById('restore')
+    .addEventListener('click', showRestoreDialog);
+
+  document.getElementById('cancel-restore').addEventListener('click', () => {
+    document.getElementById('restore-dialog').close();
+  });
+
+  document
+    .getElementById('confirm-restore')
+    .addEventListener('click', async () => {
+      const file = document.getElementById('log-select').value;
+      document.getElementById('restore-dialog').close();
+      if (!file) return;
+      const ok = await ipcRenderer.invoke('rollback', file);
+      alert(ok ? 'Restore completed' : 'Restore failed');
+      window.location.reload();
+    });
+
   document.getElementById('delete').addEventListener('click', async () => {
     const checked = Array.from(
       document.querySelectorAll('input[type=checkbox]'),

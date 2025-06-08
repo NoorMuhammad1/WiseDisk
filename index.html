@@ -16,6 +16,15 @@
     </header>
     <div id="file-list"></div>
     <button id="delete">Delete Selected</button>
+    <button id="restore">Restore from Deletion Log</button>
+    <dialog id="restore-dialog">
+      <h2>Select deletion log</h2>
+      <select id="log-select"></select>
+      <div>
+        <button id="confirm-restore">Restore</button>
+        <button id="cancel-restore">Cancel</button>
+      </div>
+    </dialog>
     <script src="renderer.js"></script>
   </body>
 </html>
