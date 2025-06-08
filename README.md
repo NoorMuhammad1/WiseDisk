@@ -68,5 +68,13 @@ npm run format
 ```
 
 Run `npm run format` to apply Prettier formatting to the project files.
-To generate fake clutter for testing:
+
+To generate fake clutter for testing, run:
+
+```bash
 node scripts/fakeClutterGenerator.js
+```
+
+This command creates a `test-disk` folder populated with random files and
+directories. The automated tests rely on this folder when running in the
+simulated environment only.
