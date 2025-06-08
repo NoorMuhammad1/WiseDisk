@@ -1,11 +1,11 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
-const fs = require("fs");
-const path = require("path");
-const trash = require("trash");
-const { scanDirectory } = require("./scanner");
-const { logDeletion } = require("./logger");
+const { app, BrowserWindow, ipcMain } = require('electron');
+const fs = require('fs');
+const path = require('path');
+const trash = require('trash');
+const { scanDirectory } = require('./scanner');
+const { logDeletion } = require('./logger');
 
-const TEST_DISK = path.join(__dirname, "test-disk");
+const TEST_DISK = path.join(__dirname, 'test-disk');
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -16,12 +16,12 @@ function createWindow() {
       contextIsolation: false,
     },
   });
-  win.loadFile("index.html");
+  win.loadFile('index.html');
 }
 
 app.whenReady().then(createWindow);
 
-ipcMain.handle("scan", async () => {
+ipcMain.handle('scan', async () => {
   try {
     return await scanDirectory(TEST_DISK);
   } catch (err) {
@@ -29,7 +29,7 @@ ipcMain.handle("scan", async () => {
   }
 });
 
-ipcMain.handle("delete", async (event, paths) => {
+ipcMain.handle('delete', async (event, paths) => {
   for (const filePath of paths) {
     try {
       const stats = await fs.promises.stat(filePath);
@@ -41,8 +41,8 @@ ipcMain.handle("delete", async (event, paths) => {
   }
 });
 
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
     app.quit();
   }
 });
