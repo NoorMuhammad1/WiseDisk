@@ -58,7 +58,7 @@ We use a **fake clutter generator script** to simulate disk usage and test logic
 
 ```bash
 npm install
-npm run start
+npm test
 ```
 To generate fake clutter for testing:
 node scripts/fakeClutterGenerator.js
