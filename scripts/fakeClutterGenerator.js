@@ -1,5 +1,5 @@
-const fs = require("fs/promises");
-const path = require("path");
+const fs = require('fs/promises');
+const path = require('path');
 
 const MIN_SIZE = 100 * 1024; // 100 KB
 const MAX_SIZE = 2 * 1024 * 1024 * 1024; // 2 GB
@@ -57,7 +57,7 @@ async function generateFakeClutter(targetDir) {
 }
 
 if (require.main === module) {
-  generateFakeClutter(path.join(__dirname, "..", "test-disk")).catch((err) => {
+  generateFakeClutter(path.join(__dirname, '..', 'test-disk')).catch((err) => {
     console.error(err);
     process.exit(1);
   });
