@@ -4,29 +4,64 @@ function formatSize(bytes) {
   const KB = 1024;
   const MB = KB * 1024;
   const GB = MB * 1024;
-  if (bytes >= GB) {
-    return `${(bytes / GB).toFixed(1)} GB`;
-  }
-  if (bytes >= MB) {
-    return `${(bytes / MB).toFixed(1)} MB`;
-  }
+  if (bytes >= GB) return `${(bytes / GB).toFixed(1)} GB`;
+  if (bytes >= MB) return `${(bytes / MB).toFixed(1)} MB`;
   return `${(bytes / KB).toFixed(1)} KB`;
+}
+
+function getIcon(name, isDir) {
+  if (isDir) return '📁';
+  const ext = name.split('.').pop().toLowerCase();
+  const icons = {
+    tmp: '🗑️',
+    log: '📜',
+    bak: '📦',
+    zip: '🗜️',
+    txt: '📄',
+  };
+  return icons[ext] || '📄';
+}
+
+function getExtClass(name) {
+  const ext = name.split('.').pop().toLowerCase();
+  const exts = ['tmp', 'log', 'bak', 'zip', 'txt'];
+  return exts.includes(ext) ? `ext-${ext}` : '';
 }
 
 function createTree(nodes) {
   const ul = document.createElement('ul');
   for (const node of nodes) {
     const li = document.createElement('li');
+    li.classList.add('tree-item');
+
+    const row = document.createElement('div');
+    row.classList.add('tree-row', getExtClass(node.name));
+
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.dataset.path = node.path;
-    li.appendChild(checkbox);
+    checkbox.addEventListener('change', () => {
+      li.classList.toggle('selected', checkbox.checked);
+    });
+    row.appendChild(checkbox);
+
     const label = document.createElement('span');
-    label.textContent = `${node.name} (${formatSize(node.size)})`;
-    li.appendChild(label);
+    label.classList.add('label');
+    label.textContent = `${getIcon(node.name, node.isDirectory)} ${node.name} (${formatSize(node.size)})`;
+    row.appendChild(label);
+
+    li.appendChild(row);
+
     if (node.isDirectory && node.children) {
-      li.appendChild(createTree(node.children));
+      label.classList.add('collapsible');
+      const childUl = createTree(node.children);
+      childUl.classList.add('nested');
+      label.addEventListener('click', () => {
+        childUl.classList.toggle('collapsed');
+      });
+      li.appendChild(childUl);
     }
+
     ul.appendChild(li);
   }
   return ul;
