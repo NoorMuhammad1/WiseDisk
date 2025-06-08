@@ -5,6 +5,10 @@ const { removeDir } = require("./testUtils");
 
 const LOG_DIR = path.join(__dirname, "logs-test");
 
+beforeEach(() => {
+  removeDir(LOG_DIR);
+});
+
 afterAll(() => {
   removeDir(LOG_DIR);
 });

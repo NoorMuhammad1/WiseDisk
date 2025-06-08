@@ -5,6 +5,10 @@ const { removeDir } = require("./testUtils");
 
 const TEST_DIR = path.join(__dirname, "tmp-disk");
 
+beforeEach(() => {
+  removeDir(TEST_DIR);
+});
+
 afterAll(() => {
   removeDir(TEST_DIR);
 });
