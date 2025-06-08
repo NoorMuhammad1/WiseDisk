@@ -47,21 +47,39 @@ function createTree(nodes) {
     });
     row.appendChild(checkbox);
 
-    const label = document.createElement('span');
-    label.classList.add('label');
-    label.textContent = `${getIcon(node.name, node.isDirectory)} ${node.name} (${formatSize(node.size)})`;
-    row.appendChild(label);
-
-    li.appendChild(row);
+    let label = null;
+    let childUl = null;
 
     if (node.isDirectory && node.children) {
-      label.classList.add('collapsible');
-      const childUl = createTree(node.children);
-      childUl.classList.add('nested');
-      label.addEventListener('click', () => {
-        childUl.classList.toggle('collapsed');
-      });
+      const toggle = document.createElement('span');
+      toggle.textContent = '▶️';
+      toggle.classList.add('toggle');
+      row.appendChild(toggle);
+
+      label = document.createElement('span');
+      label.classList.add('label', 'collapsible');
+      label.textContent = `${getIcon(node.name, node.isDirectory)} ${node.name} (${formatSize(node.size)})`;
+      row.appendChild(label);
+
+      childUl = createTree(node.children);
+      childUl.classList.add('nested', 'collapsed');
+
+      const toggleChildren = () => {
+        const collapsed = childUl.classList.toggle('collapsed');
+        toggle.textContent = collapsed ? '▶️' : '🔽';
+      };
+
+      toggle.addEventListener('click', toggleChildren);
+      label.addEventListener('click', toggleChildren);
+
+      li.appendChild(row);
       li.appendChild(childUl);
+    } else {
+      label = document.createElement('span');
+      label.classList.add('label');
+      label.textContent = `${getIcon(node.name, node.isDirectory)} ${node.name} (${formatSize(node.size)})`;
+      row.appendChild(label);
+      li.appendChild(row);
     }
 
     ul.appendChild(li);
