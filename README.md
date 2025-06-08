@@ -7,6 +7,7 @@
 ## 🚀 Vision
 
 The goal of WiseDisk is to move beyond simple file size analysis and build an intelligent cleanup assistant that:
+
 - Understands the role and risk of each file/folder
 - Suggests safe deletion candidates
 - Logs every operation for transparency and rollback
@@ -30,6 +31,7 @@ The goal of WiseDisk is to move beyond simple file size analysis and build an in
 ## 📅 Milestone Roadmap
 
 ### ✅ MVP v0.1 – Basic Functionality
+
 - [x] Simulate fake disk clutter for testing
 - [x] Scan and display a tree of folders/files with sizes
 - [x] Allow checkbox-based deletion through Recycle Bin
@@ -37,11 +39,13 @@ The goal of WiseDisk is to move beyond simple file size analysis and build an in
 - [ ] Support rollback through logs or file restoration
 
 ### 🔜 v0.2 – Categorization and Scoring
+
 - [ ] Tag files/folders (system, user, temp, dev, etc.)
 - [ ] Assign deletability score
 - [ ] Filter or sort by score
 
 ### 🔮 v0.3+ – LLM and Intelligent Suggestions
+
 - [ ] Chat assistant to explain folders or suggest deletions
 - [ ] Natural language command interface
 - [ ] Custom script generator (e.g., delete all unused `.log` files > 100MB)
@@ -60,6 +64,9 @@ We use a **fake clutter generator script** to simulate disk usage and test logic
 npm install
 npm test
 npm start
+npm run format
 ```
+
+Run `npm run format` to apply Prettier formatting to the project files.
 To generate fake clutter for testing:
 node scripts/fakeClutterGenerator.js

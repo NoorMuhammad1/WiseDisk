@@ -1,5 +1,5 @@
-const fs = require("fs/promises");
-const path = require("path");
+const fs = require('fs/promises');
+const path = require('path');
 
 async function getFolderSize(dir) {
   let total = 0;
