@@ -1,11 +1,12 @@
 const fs = require("fs");
 const path = require("path");
 const { logDeletion } = require("../logger");
+const { removeDir } = require("./testUtils");
 
 const LOG_DIR = path.join(__dirname, "logs-test");
 
 afterAll(() => {
-  fs.rmSync(LOG_DIR, { recursive: true, force: true });
+  removeDir(LOG_DIR);
 });
 
 test("logDeletion writes a log entry", async () => {
