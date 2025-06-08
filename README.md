@@ -36,7 +36,14 @@ The goal of WiseDisk is to move beyond simple file size analysis and build an in
 - [x] Scan and display a tree of folders/files with sizes
 - [x] Allow checkbox-based deletion through Recycle Bin
 - [x] Log each action to a local `.log` file
-- [ ] Support rollback through logs or file restoration
+- [x] Support rollback through logs or file restoration
+      To restore deleted files using the logs, run:
+
+```bash
+node scripts/rollback.js [logDir]
+```
+
+The `logDir` defaults to `logs/`.
 
 ### 🔜 v0.2 – Categorization and Scoring
 
