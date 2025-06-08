@@ -4,7 +4,8 @@
   "description": "**WiseDisk** is a Windows desktop application that analyzes disk usage, identifies clutter, and recommends safe deletions with context-aware guidance. Built with **Electron.js**, WiseDisk helps users understand and optimize their system's disk space intelligently and safely.",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "electron ."
   },
   "keywords": [],
   "author": "",
@@ -13,5 +14,9 @@
   "devDependencies": {
     "jest": "^29.7.0",
     "prettier": "^3.1.1"
+  },
+  "dependencies": {
+    "electron": "^36.4.0",
+    "trash": "^9.0.0"
   }
 }

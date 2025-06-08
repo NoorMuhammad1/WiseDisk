@@ -31,9 +31,9 @@ The goal of WiseDisk is to move beyond simple file size analysis and build an in
 
 ### ✅ MVP v0.1 – Basic Functionality
 - [x] Simulate fake disk clutter for testing
-- [ ] Scan and display a tree of folders/files with sizes
-- [ ] Allow checkbox-based deletion through Recycle Bin
-- [ ] Log each action to a local `.log` file
+- [x] Scan and display a tree of folders/files with sizes
+- [x] Allow checkbox-based deletion through Recycle Bin
+- [x] Log each action to a local `.log` file
 - [ ] Support rollback through logs or file restoration
 
 ### 🔜 v0.2 – Categorization and Scoring
@@ -59,6 +59,7 @@ We use a **fake clutter generator script** to simulate disk usage and test logic
 ```bash
 npm install
 npm test
+npm start
 ```
 To generate fake clutter for testing:
 node scripts/fakeClutterGenerator.js
